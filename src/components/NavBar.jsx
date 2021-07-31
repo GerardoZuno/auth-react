@@ -14,7 +14,7 @@ const NavBar = () => {
                         Admin
                     </NavLink>
                     <NavLink className='btn btn-dark mr-2' to='/login' exact>
-                        Admin
+                        Login
                     </NavLink>
                 </div>
             </div>

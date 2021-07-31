@@ -7,6 +7,8 @@ import {
 } from "react-router-dom";
 
 import NavBar from './components/NavBar'
+import Admin from './components/Admin'
+import Login from './components/Login'
 
 
 function App() {
@@ -16,9 +18,9 @@ function App() {
         <h1>Auth</h1>
         <NavBar />
        <Switch>
-         <Route exact path='/login' component=''/>
-         <Route exact path='/admin' component=''/>
-         <Route exact path='/inicio' component=''/>
+         <Route exact path='/login' component={Login}/>
+         <Route exact path='/admin' component={Admin}/>
+         <Route exact path='/' />
 
 
        </Switch>
