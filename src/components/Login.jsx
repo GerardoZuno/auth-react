@@ -4,23 +4,30 @@ function Login() {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [error, setError] = useState(null)
+
 
     const procesarDatos = (e) =>  {
         e.preventDefault()
         if(!email.trim()){
-            console.log('esta vacio email')
+            //console.log('Ingrese un email')
+            setError('Ingrese un email')
             return
         }
         if(!password.trim()){
-            console.log('esta vacio password')
+           // console.log('esta vacio password')
+            setError('Ingrese el password')
             return
         }
         if(password.length < 6) {
-            console.log('ingrese 6 caracteres')
+            //console.log('ingrese 6 caracteres')
+            setError('Ingrese 6 caracteres')
+
             return
         }
 
         console.log('sucess')
+        setError(null)
 
     }
     return (
@@ -30,6 +37,13 @@ function Login() {
             <div className="row justify-content-center">
                 <div className="col-12 col-sm-8 col-md-6 col-xl-4">
                    <form onSubmit={procesarDatos}>
+                       {
+                           error && (
+                               <div className='alert alert-danger'>
+                                   {error}
+                               </div>
+                           )
+                       }
                       <input type="email"
                        className="form-control mb-2"
                        placeholder="Ingrese un email"

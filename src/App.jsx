@@ -15,7 +15,6 @@ function App() {
   return (
     <Router >
       <div className="container">
-        <h1>Auth</h1>
         <NavBar />
        <Switch>
          <Route exact path='/login' component={Login}/>
