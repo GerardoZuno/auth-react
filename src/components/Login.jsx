@@ -1,7 +1,9 @@
 import React, { useState, useCallback } from "react";
 import { auth, db } from "../firebase.js";
+import {withRouter} from "react-router-dom"
 
-function Login() {
+function Login({history}) {
+  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
@@ -31,7 +33,7 @@ function Login() {
 
     if (esRegistro) {
       registrar();
-    } else {
+    } else {         
       login();
     }
   };
@@ -49,6 +51,7 @@ function Login() {
       setEmail("");
       setPassword("");
       setError(null);
+      history.push('/admin')
     } catch (error) {
       console.log(error);
       if (error.code === "auth/invalid-email") {
@@ -59,14 +62,19 @@ function Login() {
         setError("Error, Email ya registrado");
       }
     }
-  }, [email, password]);
+  }, [email, password, history]);
 
   const login = useCallback(async () => {
     try {
       const res = await auth.signInWithEmailAndPassword(email, password);
       console.log(res.user);
-      
-    } catch (error) {
+      setEmail("");
+      setPassword("");
+      setError(null);
+      history.push('/admin')
+    }
+    
+    catch (error) {
       console.log(error);
       if (error.code === "auth/invalid-email") {
         //setError(error.message);
@@ -83,7 +91,14 @@ function Login() {
 
 
     }
-  }, [email, password]);
+  }, [email, password, history]);
+
+  const loggearse = () => {
+    setEsRegistro(!esRegistro)
+    setEmail("");
+    setPassword("");
+    setError(null);
+  }
 
   return (
     <div className="mt-5">
@@ -115,7 +130,7 @@ function Login() {
             <button
               className="btn btn-info btn-sm btn-block"
               type="button"
-              onClick={() => setEsRegistro(!esRegistro)}
+              onClick={() => loggearse()}
             >
               {esRegistro ? "Ya tienes cuenta?" : "Registrarse"}
             </button>
@@ -126,4 +141,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default withRouter(Login);
