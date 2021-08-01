@@ -138,6 +138,17 @@ function Login({history}) {
             >
               {esRegistro ? "Ya tienes cuenta?" : "Registrarse"}
             </button>
+            {
+              !esRegistro && (
+                <button className="btn btn-secondary btn-sm btn-block"
+                type='button'
+                onClick={() =>history.push('/reset')}
+                >
+                Recuperar Contraseña
+              </button>
+              )
+            }
+           
           </form>
         </div>
       </div>

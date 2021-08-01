@@ -9,6 +9,7 @@ import {
 import NavBar from './components/NavBar'
 import Admin from './components/Admin'
 import Login from './components/Login'
+import Reset from './components/Reset'
 import {auth} from "./firebase.js";
 
 
@@ -35,6 +36,7 @@ function App() {
        <Switch>
          <Route exact path='/login' component={Login}/>
          <Route exact path='/admin' component={Admin}/>
+         <Route exact path='/reset' component={Reset}/>
          <Route exact path='/' />
 
 
