@@ -4,8 +4,8 @@ import {withRouter} from "react-router-dom"
 
 function Login({history}) {
   
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("gerardo@gmail.com");
+  const [password, setPassword] = useState("123123");
   const [error, setError] = useState(null);
   const [esRegistro, setEsRegistro] = useState(true);
 
@@ -48,6 +48,10 @@ function Login({history}) {
         email: res.user.email,
         uid: res.user.uid,
       });
+      await db.collection(res.user.uid).add({
+          name: 'Tarea de ejemplo',
+          fecha: Date.now()
+      })
       setEmail("");
       setPassword("");
       setError(null);
